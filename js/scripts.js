@@ -58,41 +58,41 @@ function createSurveyObjects() {
   var question1 = {
     "id": "question1",
     "title": "Question 1: Environment",
-    "one": "1",
-    "two": "2",
-    "three": "3"
+    "one": "I eat breakfast.",
+    "two": "I rarely eat lunch.",
+    "three": "I rarely eat at all..."
   };
 
   var question2 = {
     "id": "question2",
     "title": "Question 2: Usage",
-    "one": "1",
-    "two": "2",
-    "three": "3"
+    "one": "I enjoy front-end interactivity.",
+    "two": "I like to think about problems as a whole and tackle issues piece at a time.",
+    "three": "I like swimming"
   };
 
   var question3 = {
     "id": "question3",
     "title": "Question 3: Personal Taste",
-    "one": "1",
-    "two": "2",
-    "three": "3"
+    "one": "I like candy.",
+    "two": "I like rap music.",
+    "three": "I try to keep my head down."
   };
 
   var question4 = {
     "id": "question4",
     "title": "Question 4: Pesonal Taste Continued...",
-    "one": "1",
-    "two": "2",
-    "three": "3"
+    "one": "I like front-end work.",
+    "two": "I like a mixture of front-end and back-end.",
+    "three": "I don't like work."
   };
 
   var question5 = {
     "id": "question5",
     "title": "Question 5: Personal Taste Continued...",
-    "one": "1",
-    "two": "2",
-    "three": "3"
+    "one": "I like semi colons.",
+    "two": "I like Microsoft software.",
+    "three": "I enjoy elegant, readable code."
   };
 
   var objectsArray = [
