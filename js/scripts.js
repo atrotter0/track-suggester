@@ -142,7 +142,7 @@ $(document).ready(function() {
 
     incrementCounter();
     var counter = getCounter();
-    if (counter.currentQuestion < counter.questionLimit - 1) {
+    if (counter.currentQuestion <= counter.questionLimit) {
       loadData();
     } else {
       $(this).hide();
