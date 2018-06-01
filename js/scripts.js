@@ -5,18 +5,14 @@ const CSHARP_MAX = 10;
 const RUBY_MIN = 11;
 
 function initialState() {
-  wipeStorage();
   buildStorage();
   disable("#nextBtn");
   disable("#viewResults");
 }
 
-function wipeStorage() {
-  localStorage.clear();
-}
-
 function buildStorage() {
-  createSurveyObjects();
+  var counter = getCounter();
+  if (counter === null) createSurveyObjects();
 }
 
 function createSurveyObjects() {
@@ -101,9 +97,7 @@ function showSurvey() {
 function incrementCounter() {
   var counter = getCounter();
   counter.currentQuestion++;
-  console.log(counter.currentQuestion);
   addToStorage(counter);
-  console.log("counter state adjusted: " + counter.currentQuestion);
 }
 
 function incrementScore() {
@@ -111,7 +105,6 @@ function incrementScore() {
   var counter = getCounter();
   counter.surveyScore = parseInt(counter.surveyScore) + value;
   addToStorage(counter);
-  console.log("survey score = " + counter.surveyScore);
 }
 
 function addProgress() {
@@ -129,9 +122,7 @@ function displayPercent(percent) {
 
 function loadData() {
   var counter = getCounter();
-  console.log(counter);
   var question = parseItem(localStorage.getItem("question" + counter.currentQuestion));
-  console.log(question);
   clearRadioChecked();
   addToSurvey(question, counter);
 }
