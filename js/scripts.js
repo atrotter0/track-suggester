@@ -1,4 +1,4 @@
-// score ranges for the survey
+// score ranges for survey
 const REACT_MAX = 5;
 const CSHARP_MIN = 6;
 const CSHARP_MAX = 10;
@@ -231,4 +231,8 @@ $(document).ready(function() {
 
     displayResults();
   });
+
+  $("#retakeSurvey").click(function() {
+    location.reload();
+  })
 });
