@@ -119,10 +119,10 @@ function addProgress() {
   var percent = ((counter.currentQuestion - 1) / counter.questionLimit) * 100;
   displayPercent(percent);
 
-  if (counter.currentQuestion === counter.questionLimit) displayPercent(1);
+  if (counter.currentQuestion === counter.questionLimit) displayPercent(100);
 }
 
-function displayPercent() {
+function displayPercent(percent) {
   $(".progress-bar").css("width", percent + "%");
   $("#surveyHeader").text("Survey Progress: " + percent + "%");
 }
@@ -209,7 +209,7 @@ function displayResults() {
 }
 
 function hideElements() {
-  $("form, .progress-box").hide();
+  $("form, .progress-box, .jumbotron").hide();
   $(".results").children("div").hide();
   $(".results").show();
 }
@@ -219,7 +219,7 @@ $(document).ready(function() {
 
   $("#start-survey").click(function() {
     disable("#start-survey");
-    $("#start-survey").hide();
+    $(".jumbotron").hide();
     showSurvey();
     loadData();
   });

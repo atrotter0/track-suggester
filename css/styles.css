@@ -3,11 +3,7 @@
 }
 
 .progress-box {
-  margin-bottom: 50px;
-}
-
-.progress-bar {
-  /*width: 20%*/;
+  margin: 50px 0 50px 0;
 }
 
 .results {
