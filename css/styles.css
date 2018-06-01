@@ -3,7 +3,7 @@
 }
 
 .progress-box {
-  margin: 50px 0 50px 0;
+  margin: 50px 0 10px 0;
 }
 
 .results {
@@ -27,6 +27,6 @@
   width: 70%;
 }
 
-#rails-logo {
+.track-logo {
   margin-bottom: 50px;
 }

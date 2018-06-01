@@ -208,11 +208,11 @@ function displayResults() {
 
   hideElements();
   if (counter.surveyScore <= REACT_MAX) {
-    $("#react").show()
+    $("#react").fadeToggle()
   } else if (counter.surveyScore <= CSHARP_MAX && counter.surveyScore >= CSHARP_MIN) {
-    $("#cSharp").show()
+    $("#cSharp").fadeToggle()
   } else if (counter.surveyScore >= RUBY_MIN) {
-    $("#rails").show()
+    $("#rails").fadeToggle()
   } else {
     alert("You broke it...");
   }
