@@ -1,3 +1,4 @@
+// score ranges for the survey
 const REACT_MAX = 5;
 const CSHARP_MIN = 6;
 const CSHARP_MAX = 10;
@@ -87,6 +88,7 @@ function buildLocalStorage(array) {
   }
 }
 
+// LocalStorage only allows for strings to be stored. Stringify object before storing
 function addToStorage(item) {
   console.log("adding item " + item.id + " to storage");
   var key = item.id;
@@ -130,6 +132,7 @@ function getCounter() {
   return counter;
 }
 
+// parse string from LocalStorage to convert back to JSON object
 function parseItem(item) {
   return JSON.parse(item);
 }
