@@ -89,12 +89,17 @@ function showSurvey() {
 }
 
 function loadData() {
-  var counter = parseItem(localStorage.getItem("counter"));
+  var counter = getCounter();
   console.log(counter);
   var question = parseItem(localStorage.getItem("question" + counter.currentQuestion));
   console.log(question);
   clearRadioChecked();
   addToSurvey(question);
+}
+
+function getCounter() {
+  var counter = parseItem(localStorage.getItem("counter"));
+  return counter;
 }
 
 function clearRadioChecked() {
@@ -116,7 +121,7 @@ function addToSurvey(question) {
 }
 
 function incrementCounter() {
-  var counter = parseItem(localStorage.getItem("counter"));
+  var counter = getCounter();
   counter.currentQuestion++;
   console.log(counter.currentQuestion);
   addToStorage(counter);
@@ -136,7 +141,19 @@ $(document).ready(function() {
     e.preventDefault();
 
     incrementCounter();
-    loadData();
-    // check for currentQuestion here. if currentQuestion === currentQuestion.limit 
+    var counter = getCounter();
+    if (counter.currentQuestion < counter.questionLimit - 1) {
+      loadData();
+    } else {
+      $(this).hide();
+      $("#view-results").show();
+    } 
+  });
+
+  $("#view-results").click(function(e) {
+    e.preventDefault();
+
+    // check state first before allowing button to be clicked
+    // calculate results
   });
 });
