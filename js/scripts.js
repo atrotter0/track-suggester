@@ -18,9 +18,9 @@ function buildStorage() {
 function createSurveyObjects() {
   console.log("creating questions...");
 
-  var count = {
-    "id": "count",
-    "count": 0
+  var currentQuestion = {
+    "id": "currentQuestion",
+    "state": 1
   };
 
   var question1 = {
@@ -64,7 +64,7 @@ function createSurveyObjects() {
   };
 
   var objectsArray = [
-    count,
+    currentQuestion,
     question1,
     question2,
     question3,
@@ -88,13 +88,36 @@ function addToStorage(item) {
   localStorage.setItem(key, item);
 }
 
-function resetCount() {
-  localStorage.setItem("count", 0);
+function showSurvey() {
+  $("#survey").show();
+  $("#nextBtn").show();
+  $(".progress").show();
+}
+
+function loadData() {
+  var currentQuestion = parseItem(localStorage.getItem("currentQuestion"));
+  console.log(currentQuestion);
+  //var question = localStorage.getItem("question" + currentQuestion.state);
+  //question = parseItem(question);
+  //$("").text();
+}
+
+function parseItem(item) {
+  return JSON.parse(item);
+}
+
+function resetState() {
+  //add reset here
 }
 
 $(document).ready(function() {
   wipeStorage();
   buildStorage();
+
+  $("#start-survey").click(function() {
+    showSurvey();
+    loadData();
+  });
 
   $("#formBtn").click(function(e) {
     e.preventDefault();
