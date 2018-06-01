@@ -84,6 +84,7 @@ function buildLocalStorage(array) {
 function addToStorage(item) {
   console.log("adding item " + item.id + " to storage");
   var key = item.id;
+  var item = JSON.stringify(item);
   localStorage.setItem(key, item);
 }
 
