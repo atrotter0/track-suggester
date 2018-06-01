@@ -1,10 +1,3 @@
-// number of question sets
-const SET_ONE = 1;
-const SET_TWO = 2;
-const SET_THREE = 3;
-const SET_FOUR = 4;
-const SET_FIVE = 5;
-
 // wipe storage each time page loads
 function wipeStorage() {
   console.log("Wiping local storage...");
@@ -18,9 +11,10 @@ function buildStorage() {
 function createSurveyObjects() {
   console.log("creating questions...");
 
-  var currentQuestion = {
-    "id": "currentQuestion",
-    "state": 1
+  var counter = {
+    "id": "counter",
+    "currentQuestion": 1,
+    "limit": 5
   };
 
   var question1 = {
@@ -64,7 +58,7 @@ function createSurveyObjects() {
   };
 
   var objectsArray = [
-    currentQuestion,
+    counter,
     question1,
     question2,
     question3,
@@ -95,19 +89,30 @@ function showSurvey() {
 }
 
 function loadData() {
-  var currentQuestion = parseItem(localStorage.getItem("currentQuestion"));
-  console.log(currentQuestion);
-  //var question = localStorage.getItem("question" + currentQuestion.state);
-  //question = parseItem(question);
-  //$("").text();
+  var counter = parseItem(localStorage.getItem("counter"));
+  console.log(counter);
+  var question = parseItem(localStorage.getItem("question" + counter.currentQuestion));
+  console.log(question);
+  addToSurvey(question);
 }
 
 function parseItem(item) {
   return JSON.parse(item);
 }
 
-function resetState() {
-  //add reset here
+function addToSurvey(question) {
+  $(".question-title").html(question.title);
+  $("#question1Text").text(question.one);
+  $("#question2Text").text(question.two);
+  $("#question3Text").text(question.three);
+}
+
+function incrementCounter() {
+  var counter = parseItem(localStorage.getItem("counter"));
+  counter.currentQuestion++;
+  console.log(counter.currentQuestion);
+  addToStorage(counter);
+  console.log("counter state adjusted!");
 }
 
 $(document).ready(function() {
@@ -119,7 +124,11 @@ $(document).ready(function() {
     loadData();
   });
 
-  $("#formBtn").click(function(e) {
+  $("#nextBtn").click(function(e) {
     e.preventDefault();
+
+    incrementCounter();
+    loadData();
+    // check for currentQuestion here. if currentQuestion === currentQuestion.limit 
   });
 });
