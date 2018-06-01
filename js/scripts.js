@@ -183,7 +183,7 @@ function countRadioBoxes() {
 function displayResults() {
   var counter = getCounter();
 
-  hideAll();
+  hideElements();
   if (counter.surveyScore <= REACT_MAX) {
     $("#react").show()
   } else if (counter.surveyScore <= CSHARP_MAX && counter.surveyScore >= CSHARP_MIN) {
@@ -195,7 +195,8 @@ function displayResults() {
   }
 }
 
-function hideAll() {
+function hideElements() {
+  $("form, .progress").hide();
   $(".results").children("div").hide();
   $(".results").show();
 }
