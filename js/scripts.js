@@ -13,8 +13,8 @@ function createSurveyObjects() {
 
   var counter = {
     "id": "counter",
-    "currentQuestion": 1,
-    "limit": 5
+    "currentQuestion": 1, // start at question 1
+    "questionLimit": 5 // go to question 5
   };
 
   var question1 = {
@@ -93,7 +93,14 @@ function loadData() {
   console.log(counter);
   var question = parseItem(localStorage.getItem("question" + counter.currentQuestion));
   console.log(question);
+  clearRadioChecked();
   addToSurvey(question);
+}
+
+function clearRadioChecked() {
+  $("input[type=radio]").each(function(index, val) {
+    $(this).prop("checked", false);
+  });
 }
 
 function parseItem(item) {
@@ -101,10 +108,11 @@ function parseItem(item) {
 }
 
 function addToSurvey(question) {
-  $(".question-title").html(question.title);
+  $(".question-title").text(question.title);
   $("#question1Text").text(question.one);
   $("#question2Text").text(question.two);
   $("#question3Text").text(question.three);
+  $("input[type=radio]").attr("name", question.id);
 }
 
 function incrementCounter() {
