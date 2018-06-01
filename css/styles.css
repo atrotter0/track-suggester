@@ -30,3 +30,10 @@
 .track-logo {
   margin-bottom: 50px;
 }
+
+/* responsive styles */
+@media screen and (max-width: 550px) {
+  .results h1, h2 {
+    font-size: 1.5em;
+  }
+}
