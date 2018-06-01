@@ -4,7 +4,7 @@ const CSHARP_MIN = 6;
 const CSHARP_MAX = 10;
 const RUBY_MIN = 11;
 
-function initialState() {
+function initialize() {
   buildStorage();
   disable("#nextBtn");
   disable("#viewResults");
@@ -12,10 +12,42 @@ function initialState() {
 
 function buildStorage() {
   var counter = getCounter();
-  if (counter === null) createSurveyObjects();
+  if (counter === null) return createSurveyObjects();
+
+  resetCounter(counter);
+}
+
+function getCounter() {
+  var counter = parseItem(localStorage.getItem("counter"));
+  return counter;
+}
+
+// parse string from LocalStorage to convert back to JSON object
+function parseItem(item) {
+  return JSON.parse(item);
+}
+
+function resetCounter(counter) {
+  var counterReset = {
+    "id": "counter",
+    "currentQuestion": 1,
+    "questionLimit": 5,
+    "surveyScore": 0
+  };
+
+  counter = counterReset;
+  addToStorage(counter);
+}
+
+// LocalStorage only allows for strings to be stored. Stringify object before storing
+function addToStorage(item) {
+  var key = item.id;
+  var item = JSON.stringify(item);
+  localStorage.setItem(key, item);
 }
 
 function createSurveyObjects() {
+  console.log("building ");
   var counter = {
     "id": "counter",
     "currentQuestion": 1, // start at question 1
@@ -81,13 +113,6 @@ function buildLocalStorage(array) {
   }
 }
 
-// LocalStorage only allows for strings to be stored. Stringify object before storing
-function addToStorage(item) {
-  var key = item.id;
-  var item = JSON.stringify(item);
-  localStorage.setItem(key, item);
-}
-
 function showSurvey() {
   $("#survey").show();
   $("#nextBtn").show();
@@ -129,16 +154,6 @@ function loadData() {
   var question = parseItem(localStorage.getItem("question" + counter.currentQuestion));
   clearRadioChecked();
   addToSurvey(question, counter);
-}
-
-function getCounter() {
-  var counter = parseItem(localStorage.getItem("counter"));
-  return counter;
-}
-
-// parse string from LocalStorage to convert back to JSON object
-function parseItem(item) {
-  return JSON.parse(item);
 }
 
 function checkQuestion() {
@@ -210,7 +225,7 @@ function hideElements() {
 }
 
 $(document).ready(function() {
-  initialState();
+  initialize();
 
   $("#start-survey").click(function() {
     disable("#start-survey");
