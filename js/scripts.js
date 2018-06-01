@@ -94,13 +94,21 @@ function showSurvey() {
   $(".progress").show();
 }
 
+function incrementCounter() {
+  var counter = getCounter();
+  counter.currentQuestion++;
+  console.log(counter.currentQuestion);
+  addToStorage(counter);
+  console.log("counter state adjusted: " + counter.currentQuestion);
+}
+
 function loadData() {
   var counter = getCounter();
   console.log(counter);
   var question = parseItem(localStorage.getItem("question" + counter.currentQuestion));
   console.log(question);
   clearRadioChecked();
-  addToSurvey(question);
+  addToSurvey(question, counter);
 }
 
 function getCounter() {
@@ -112,24 +120,15 @@ function parseItem(item) {
   return JSON.parse(item);
 }
 
-function incrementCounter() {
-  var counter = getCounter();
-  counter.currentQuestion++;
-  console.log(counter.currentQuestion);
-  addToStorage(counter);
-  console.log("counter state adjusted: " + counter.currentQuestion);
-}
-
 function checkQuestion() {
   var counter = getCounter();
   loadData();
-  if (counter.currentQuestion === counter.questionLimit) showResults();
+  if (counter.currentQuestion === counter.questionLimit) buttonSwap();
 }
 
-function showResults() {
+function buttonSwap() {
   $("#nextBtn").hide();
   disable("#nextBtn");
-  enable("#viewResults");
   $("#viewResults").show();
 }
 
@@ -139,7 +138,9 @@ function clearRadioChecked() {
   });
 }
 
-function addToSurvey(question) {
+function addToSurvey(question, counter) {
+  if (counter.currentQuestion > counter.questionLimit) return alert("Stop trying to break things...");
+
   $(".question-title").text(question.title);
   $("#question1Text").text(question.one);
   $("#question2Text").text(question.two);
@@ -155,8 +156,8 @@ function enable(element) {
   $(element).removeAttr("disabled");
 }
 
-function validateInput() {
-  if (countRadioBoxes() === 1) enable("#nextBtn");
+function unlockBtn(btnId) {
+  if (countRadioBoxes() === 1) enable(btnId);
 }
 
 function countRadioBoxes() {
@@ -176,7 +177,10 @@ $(document).ready(function() {
   });
 
   $("label, input[type=radio]").click(function() {
-    validateInput();
+    var counter = getCounter();
+    if (counter.currentQuestion === counter.questionLimit) return unlockBtn("#viewResults");
+    
+    unlockBtn("#nextBtn");
   });
 
   $("#nextBtn").click(function(e) {
