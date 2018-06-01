@@ -95,7 +95,7 @@ function addToStorage(item) {
 function showSurvey() {
   $("#survey").show();
   $("#nextBtn").show();
-  $(".progress").show();
+  $(".progress-box").show();
 }
 
 function incrementCounter() {
@@ -112,6 +112,13 @@ function incrementScore() {
   counter.surveyScore = parseInt(counter.surveyScore) + value;
   addToStorage(counter);
   console.log("survey score = " + counter.surveyScore);
+}
+
+function addProgress() {
+  var counter = getCounter();
+  var percent = (counter.currentQuestion / counter.questionLimit) * 100;
+  $(".progress-bar").css("width", percent + "%");
+  $("#surveyHeader").text("Survey Progress: " + percent + "%");
 }
 
 function loadData() {
@@ -196,7 +203,7 @@ function displayResults() {
 }
 
 function hideElements() {
-  $("form, .progress").hide();
+  $("form, .progress-box").hide();
   $(".results").children("div").hide();
   $(".results").show();
 }
@@ -224,6 +231,7 @@ $(document).ready(function() {
     disable("#nextBtn");
     incrementCounter();
     incrementScore();
+    addProgress();
     checkQuestion();
   });
 

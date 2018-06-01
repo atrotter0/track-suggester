@@ -1,5 +1,9 @@
-.progress, .results, #survey, #nextBtn, #viewResults {
+.progress-box, .results, #survey, #nextBtn, #viewResults {
   display: none;
+}
+
+.progress-box {
+  margin-bottom: 50px;
 }
 
 .results {
@@ -8,10 +12,12 @@
 
 .results h1 {
   margin-bottom: 50px;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .results h2 {
-  margin: 50px 0;
+  margin: 30px 0 50px 0;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .results img {
