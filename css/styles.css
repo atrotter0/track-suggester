@@ -6,6 +6,10 @@
   margin-bottom: 50px;
 }
 
+.progress-bar {
+  /*width: 20%*/;
+}
+
 .results {
   text-align: center;
 }

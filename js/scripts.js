@@ -116,7 +116,13 @@ function incrementScore() {
 
 function addProgress() {
   var counter = getCounter();
-  var percent = (counter.currentQuestion / counter.questionLimit) * 100;
+  var percent = ((counter.currentQuestion - 1) / counter.questionLimit) * 100;
+  displayPercent(percent);
+
+  if (counter.currentQuestion === counter.questionLimit) displayPercent(1);
+}
+
+function displayPercent() {
   $(".progress-bar").css("width", percent + "%");
   $("#surveyHeader").text("Survey Progress: " + percent + "%");
 }
@@ -220,7 +226,7 @@ $(document).ready(function() {
 
   $("label, input[type=radio]").click(function() {
     var counter = getCounter();
-    if (counter.currentQuestion === counter.questionLimit) return unlockBtn("#viewResults");
+    if (counter.currentQuestion === counter.questionLimit) unlockBtn("#viewResults");
 
     unlockBtn("#nextBtn");
   });
