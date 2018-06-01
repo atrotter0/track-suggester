@@ -12,7 +12,6 @@ function initialState() {
 }
 
 function wipeStorage() {
-  console.log("Wiping local storage...");
   localStorage.clear();
 }
 
@@ -21,8 +20,6 @@ function buildStorage() {
 }
 
 function createSurveyObjects() {
-  console.log("creating questions...");
-
   var counter = {
     "id": "counter",
     "currentQuestion": 1, // start at question 1
@@ -90,7 +87,6 @@ function buildLocalStorage(array) {
 
 // LocalStorage only allows for strings to be stored. Stringify object before storing
 function addToStorage(item) {
-  console.log("adding item " + item.id + " to storage");
   var key = item.id;
   var item = JSON.stringify(item);
   localStorage.setItem(key, item);
@@ -187,21 +183,29 @@ function countRadioBoxes() {
 function displayResults() {
   var counter = getCounter();
 
+  hideAll();
   if (counter.surveyScore <= REACT_MAX) {
-    console.log("You should do REACT");
+    $("#react").show()
   } else if (counter.surveyScore <= CSHARP_MAX && counter.surveyScore >= CSHARP_MIN) {
-    console.log("You should do C#");
+    $("#cSharp").show()
   } else if (counter.surveyScore >= RUBY_MIN) {
-    console.log("You should do RUBY");
+    $("#rails").show()
   } else {
     alert("You broke it...");
   }
+}
+
+function hideAll() {
+  $(".results").children("div").hide();
+  $(".results").show();
 }
 
 $(document).ready(function() {
   initialState();
 
   $("#start-survey").click(function() {
+    disable("#start-survey");
+    $("#start-survey").hide();
     showSurvey();
     loadData();
   });

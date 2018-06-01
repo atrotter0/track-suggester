@@ -1,3 +1,19 @@
-.progress, #survey, #nextBtn, #viewResults {
-  display: none;
+.progress, .results, #survey, #nextBtn, #viewResults {
+  display: block;
+}
+
+.results {
+  text-align: center;
+}
+
+.results h1 {
+  margin-bottom: 50px;
+}
+
+.results h2 {
+  margin: 50px 0;
+}
+
+.results img {
+  width: 70%;
 }
