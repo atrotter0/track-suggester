@@ -1,3 +1,8 @@
+const REACT_MAX = 5;
+const CSHARP_MIN = 6;
+const CSHARP_MAX = 10;
+const RUBY_MIN = 11;
+
 function initialState() {
   wipeStorage();
   buildStorage();
@@ -20,7 +25,8 @@ function createSurveyObjects() {
   var counter = {
     "id": "counter",
     "currentQuestion": 1, // start at question 1
-    "questionLimit": 5 // go to question 5
+    "questionLimit": 5, // go to question 5
+    "surveyScore": 0
   };
 
   var question1 = {
@@ -102,6 +108,14 @@ function incrementCounter() {
   console.log("counter state adjusted: " + counter.currentQuestion);
 }
 
+function incrementScore() {
+  var value = parseInt($("input:radio[name=questionSet]:checked").val())
+  var counter = getCounter();
+  counter.surveyScore = parseInt(counter.surveyScore) + value;
+  addToStorage(counter);
+  console.log("survey score = " + counter.surveyScore);
+}
+
 function loadData() {
   var counter = getCounter();
   console.log(counter);
@@ -145,7 +159,6 @@ function addToSurvey(question, counter) {
   $("#question1Text").text(question.one);
   $("#question2Text").text(question.two);
   $("#question3Text").text(question.three);
-  $("input[type=radio]").attr("name", question.id);
 }
 
 function disable(element) {
@@ -168,6 +181,20 @@ function countRadioBoxes() {
   return count;
 }
 
+function displayResults() {
+  var counter = getCounter();
+
+  if (counter.surveyScore <= REACT_MAX) {
+    console.log("You should do REACT");
+  } else if (counter.surveyScore <= CSHARP_MAX && counter.surveyScore >= CSHARP_MIN) {
+    console.log("You should do C#");
+  } else if (counter.surveyScore >= RUBY_MIN) {
+    console.log("You should do RUBY");
+  } else {
+    alert("You broke it...");
+  }
+}
+
 $(document).ready(function() {
   initialState();
 
@@ -179,7 +206,7 @@ $(document).ready(function() {
   $("label, input[type=radio]").click(function() {
     var counter = getCounter();
     if (counter.currentQuestion === counter.questionLimit) return unlockBtn("#viewResults");
-    
+
     unlockBtn("#nextBtn");
   });
 
@@ -188,13 +215,13 @@ $(document).ready(function() {
 
     disable("#nextBtn");
     incrementCounter();
+    incrementScore();
     checkQuestion();
   });
 
   $("#viewResults").click(function(e) {
     e.preventDefault();
 
-    // check state first before allowing button to be clicked
-    // calculate results
+    displayResults();
   });
 });
