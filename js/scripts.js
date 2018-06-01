@@ -1,4 +1,10 @@
-// wipe storage each time page loads
+function initialState() {
+  wipeStorage();
+  buildStorage();
+  disable("#nextBtn");
+  disable("#viewResults");
+}
+
 function wipeStorage() {
   console.log("Wiping local storage...");
   localStorage.clear();
@@ -43,7 +49,7 @@ function createSurveyObjects() {
 
   var question4 = {
     "id": "question4",
-    "title": "Question 4: Pesonal Taste Cont...",
+    "title": "Question 4: Pesonal Taste Continued...",
     "one": "1",
     "two": "2",
     "three": "3"
@@ -51,7 +57,7 @@ function createSurveyObjects() {
 
   var question5 = {
     "id": "question5",
-    "title": "Question 5: Personal Taste Cont...",
+    "title": "Question 5: Personal Taste Continued...",
     "one": "1",
     "two": "2",
     "three": "3"
@@ -102,14 +108,35 @@ function getCounter() {
   return counter;
 }
 
+function parseItem(item) {
+  return JSON.parse(item);
+}
+
+function incrementCounter() {
+  var counter = getCounter();
+  counter.currentQuestion++;
+  console.log(counter.currentQuestion);
+  addToStorage(counter);
+  console.log("counter state adjusted: " + counter.currentQuestion);
+}
+
+function checkQuestion() {
+  var counter = getCounter();
+  loadData();
+  if (counter.currentQuestion === counter.questionLimit) showResults();
+}
+
+function showResults() {
+  $("#nextBtn").hide();
+  disable("#nextBtn");
+  enable("#viewResults");
+  $("#viewResults").show();
+}
+
 function clearRadioChecked() {
   $("input[type=radio]").each(function(index, val) {
     $(this).prop("checked", false);
   });
-}
-
-function parseItem(item) {
-  return JSON.parse(item);
 }
 
 function addToSurvey(question) {
@@ -120,37 +147,47 @@ function addToSurvey(question) {
   $("input[type=radio]").attr("name", question.id);
 }
 
-function incrementCounter() {
-  var counter = getCounter();
-  counter.currentQuestion++;
-  console.log(counter.currentQuestion);
-  addToStorage(counter);
-  console.log("counter state adjusted!");
+function disable(element) {
+  $(element).prop("disabled", "true");
+}
+
+function enable(element) {
+  $(element).removeAttr("disabled");
+}
+
+function validateInput() {
+  if (countRadioBoxes() === 1) enable("#nextBtn");
+}
+
+function countRadioBoxes() {
+  var count = 0;
+  $("input:radio").each(function(index, item) {
+    if ($(item).is(':checked')) count++;
+  });
+  return count;
 }
 
 $(document).ready(function() {
-  wipeStorage();
-  buildStorage();
+  initialState();
 
   $("#start-survey").click(function() {
     showSurvey();
     loadData();
   });
 
+  $("label, input[type=radio]").click(function() {
+    validateInput();
+  });
+
   $("#nextBtn").click(function(e) {
     e.preventDefault();
 
+    disable("#nextBtn");
     incrementCounter();
-    var counter = getCounter();
-    if (counter.currentQuestion <= counter.questionLimit) {
-      loadData();
-    } else {
-      $(this).hide();
-      $("#view-results").show();
-    } 
+    checkQuestion();
   });
 
-  $("#view-results").click(function(e) {
+  $("#viewResults").click(function(e) {
     e.preventDefault();
 
     // check state first before allowing button to be clicked
