@@ -112,12 +112,16 @@ function addProgress() {
   var percent = ((counter.currentQuestion - 1) / counter.questionLimit) * 100;
   displayPercent(percent);
 
-  if (counter.currentQuestion === counter.questionLimit) displayPercent(100);
+  if (onLastQuestion(counter)) displayPercent(100);
 }
 
 function displayPercent(percent) {
   $(".progress-bar").css("width", percent + "%");
   $("#surveyHeader").text("Survey Progress: " + percent + "%");
+}
+
+function onLastQuestion(counter) {
+  return counter.currentQuestion === counter.questionLimit;
 }
 
 function loadData() {
@@ -140,7 +144,7 @@ function parseItem(item) {
 function checkQuestion() {
   var counter = getCounter();
   loadData();
-  if (counter.currentQuestion === counter.questionLimit) buttonSwap();
+  if (onLastQuestion(counter)) buttonSwap();
 }
 
 function buttonSwap() {
@@ -217,7 +221,7 @@ $(document).ready(function() {
 
   $("label, input[type=radio]").click(function() {
     var counter = getCounter();
-    if (counter.currentQuestion === counter.questionLimit) unlockBtn("#viewResults");
+    if (onLastQuestion(counter)) unlockBtn("#viewResults");
 
     unlockBtn("#nextBtn");
   });
