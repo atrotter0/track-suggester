@@ -134,7 +134,7 @@ function incrementScore() {
 
 function addProgress() {
   var counter = getCounter();
-  var percent = ((counter.currentQuestion - 1) / counter.questionLimit) * 100;
+  var percent = (counter.currentQuestion / counter.questionLimit) * 100;
   displayPercent(percent);
 
   if (onLastQuestion(counter)) displayPercent(100);
@@ -192,15 +192,12 @@ function enable(element) {
 }
 
 function unlockBtn(btnId) {
-  if (countRadioBoxes() === 1) enable(btnId);
+  if (radioBoxChecked()) enable(btnId);
 }
 
-function countRadioBoxes() {
-  var count = 0;
-  $("input:radio").each(function(index, item) {
-    if ($(item).is(':checked')) count++;
-  });
-  return count;
+function radioBoxChecked() {
+  var count = $("input[type=radio]:checked").length;
+  if (count > 0) return true;
 }
 
 function displayResults() {
@@ -232,6 +229,7 @@ $(document).ready(function() {
     $(".jumbotron").hide();
     showSurvey();
     loadData();
+    addProgress(20);
   });
 
   $("label, input[type=radio]").click(function() {
