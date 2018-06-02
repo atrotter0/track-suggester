@@ -218,7 +218,7 @@ function displayResults() {
 function hideElements() {
   $("form, .progress-box, .jumbotron").hide();
   $(".results").children("div").hide();
-  $(".results").show();
+  $(".results").fadeToggle(800);
 }
 
 $(document).ready(function() {
