@@ -2,8 +2,22 @@
   display: none;
 }
 
+.btn-epicodus {
+  background-color: #00b3b4;
+  color: #ffffff;
+}
+
+.btn-epicodus:hover {
+  background-color: #01a0a0;
+  color: #ffffff;
+}
+
 .progress-box {
   margin: 20px 0 10px 0;
+}
+
+.progress-bar {
+  background-color: #00b3b4;
 }
 
 .progress {

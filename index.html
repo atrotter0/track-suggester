@@ -8,6 +8,7 @@
   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/575afcfb4c2f85b651614825/favicon.ico"/>
   <title>Epicodus Track Suggester</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
     <div class="jumbotron">
       <h1>Epicodus Track Suggester</h1>
       <p>Do you want to get your career started in the tech industry? How about a career in programming? Answer the questions below to find out what Epicodus track will be right for you!</p>
-      <p><a class="btn btn-primary btn-lg" role="button" id="start-survey">Start Survey</a></p>
+      <p><a class="btn btn-epicodus btn-lg" role="button" id="start-survey">Start Survey</a></p>
     </div>
     <div class="well progress-box">
       <h4 id="surveyHeader">Survey Progress: 0%</h4>
@@ -26,9 +27,9 @@
       </div>
     </div>
     <form id="survey">
-      <div class="panel panel-primary question">
-        <div class="panel-heading question-title">
-          Title
+      <div class="panel panel-default question">
+        <div class="panel-heading">
+          <h2 class="question-title">Title</h2>
         </div>
         <div class="panel-body">
           <div class="radio">
@@ -51,10 +52,10 @@
           </div>
         </div>
       </div>
-      <button type="submit" id="nextBtn" class="btn btn-default btn-lg">Next</button>
-      <button type="submit" id="viewResults" class="btn btn-success btn-lg">View Results</button>
+      <button type="submit" id="nextBtn" class="btn btn-epicodus btn-lg">Next</button>
+      <button type="submit" id="viewResults" class="btn btn-epicodus btn-lg">View Results</button>
     </form>
-    <div class="well results">
+    <div class="results">
       <h1>You should choose...</h1>
       <div id="react">
         <img src="img/react.jpg" alt="React logo" class="track-logo">
@@ -68,7 +69,7 @@
         <img src="img/rails.png" alt="Ruby on Rails logo" class="track-logo" id="rails-logo">
         <h2>Ruby / Rails</h2>
       </div>
-      <button type="submit" id="retakeSurvey" class="btn btn-primary btn-lg">Retake Survey</button>
+      <button type="submit" id="retakeSurvey" class="btn btn-epicodus btn-lg">Retake Survey</button>
     </div>
   </div>
 </body>
