@@ -5,6 +5,7 @@ const CSHARP_MAX = 10;
 const RUBY_MIN = 11;
 
 function initialize() {
+  localStorage.clear();
   buildStorage();
   disable("#nextBtn");
   disable("#viewResults");
@@ -47,7 +48,6 @@ function addToStorage(item) {
 }
 
 function createSurveyObjects() {
-  console.log("building ");
   var counter = {
     "id": "counter",
     "currentQuestion": 1, // start at question 1
@@ -58,41 +58,41 @@ function createSurveyObjects() {
   var question1 = {
     "id": "question1",
     "title": "Question 1: Environment",
-    "one": "I eat breakfast.",
-    "two": "I rarely eat lunch.",
-    "three": "I rarely eat at all..."
+    "one": "I want to work at a small or medium-sized business.",
+    "two": "I want to develop software for businesses to use internally.",
+    "three": "I want to create web applications for anyone to be able to use."
   };
 
   var question2 = {
     "id": "question2",
-    "title": "Question 2: Usage",
-    "one": "I enjoy front-end interactivity.",
-    "two": "I like to think about problems as a whole and tackle issues piece at a time.",
-    "three": "I like swimming"
+    "title": "Question 2: Interests",
+    "one": "I enjoy creating front-end interactivity.",
+    "two": "I like to think about problems as a whole, and tackle issues a piece at a time.",
+    "three": "I want access to a wide array of libraries. Magic is exciting!"
   };
 
   var question3 = {
     "id": "question3",
-    "title": "Question 3: Personal Taste",
-    "one": "I like candy.",
-    "two": "I like rap music.",
-    "three": "I try to keep my head down."
+    "title": "Question 3: Syntax",
+    "one": "Semi-colons are where it's at.",
+    "two": "I want to declare data types ahead of time when creating my functions.",
+    "three": "I can't stand punctuation. I enjoy elegant, readable code."
   };
 
   var question4 = {
     "id": "question4",
-    "title": "Question 4: Pesonal Taste Continued...",
-    "one": "I like front-end work.",
-    "two": "I like a mixture of front-end and back-end.",
-    "three": "I don't like work."
+    "title": "Question 4: Work",
+    "one": "I like sleek designs and interesting features that grab my attention.",
+    "two": "I like a mixture of front-end and back-end work.",
+    "three": "I like to work with user authentication and portals."
   };
 
   var question5 = {
     "id": "question5",
-    "title": "Question 5: Personal Taste Continued...",
-    "one": "I like semi colons.",
-    "two": "I like Microsoft software.",
-    "three": "I enjoy elegant, readable code."
+    "title": "Question 5: Personal Taste",
+    "one": "I want more ways to manipulate the DOM.",
+    "two": "I am interested in learning a language for game development.",
+    "three": "I like things to just work behind the scenes, giving me tools to simplify the task at hand."
   };
 
   var objectsArray = [
