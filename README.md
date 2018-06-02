@@ -1,12 +1,12 @@
 # Epicodus Track Suggester
 
-#### Epicodus Intro to Programming Week 2 capstone project, 06.01.2018
+#### Epicodus Intro to Programming Week 2 independent project, 06.01.2018
 
 #### By Abel Trotter
 
 ## Description
 
-Take a personality quiz to find out which track you should take at Epicodus
+Take a personality quiz to find out which track you should take at Epicodus!
 
 ## Setup/Contribution Requirements
 

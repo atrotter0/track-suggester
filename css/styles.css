@@ -1,9 +1,10 @@
 .results a {
+  color: #adadad;
   transition: 0.5s;
 }
 
 .results a:hover {
-  color: black;
+  color: #000000;
   text-decoration: none;
   transition: 0.5s;
 }
