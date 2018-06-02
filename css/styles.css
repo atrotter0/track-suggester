@@ -8,7 +8,7 @@
   transition: 0.5s;
 }
 
-.progress-box, #survey, #nextBtn, #viewResults {
+.progress-box, .results, #survey, #nextBtn, #viewResults {
   display: none;
 }
 
