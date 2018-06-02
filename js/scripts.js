@@ -114,9 +114,9 @@ function buildLocalStorage(array) {
 }
 
 function showSurvey() {
-  $("#survey").show();
-  $("#nextBtn").show();
-  $(".progress-box").show();
+  $("#survey").fadeToggle(500);
+  $("#nextBtn").fadeToggle(900);
+  $(".progress-box").fadeToggle(700);
 }
 
 function incrementCounter() {
@@ -165,7 +165,7 @@ function checkQuestion() {
 function buttonSwap() {
   $("#nextBtn").hide();
   disable("#nextBtn");
-  $("#viewResults").show();
+  $("#viewResults").fadeToggle(800);
 }
 
 function clearRadioChecked() {

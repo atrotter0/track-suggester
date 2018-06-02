@@ -3,11 +3,11 @@
 }
 
 .progress-box {
-  margin: 50px 0 10px 0;
+  margin: 20px 0 10px 0;
 }
 
-.progress-bar {
-
+.progress {
+  background-color: rgba(45,8,8,0.06);
 }
 
 .results {
