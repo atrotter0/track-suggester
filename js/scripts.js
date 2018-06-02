@@ -74,8 +74,8 @@ function createSurveyObjects() {
   var question3 = {
     "id": "question3",
     "title": "Question 3: Syntax",
-    "one": "Semi-colons are where it's at.",
-    "two": "I want to declare data types ahead of time when creating my functions.",
+    "one": "Semicolons are where it's at.",
+    "two": "I want to declare return types ahead of time when creating my functions.",
     "three": "I can't stand punctuation. I enjoy elegant, readable code."
   };
 
@@ -84,15 +84,15 @@ function createSurveyObjects() {
     "title": "Question 4: Work",
     "one": "I like sleek designs and interesting features that grab my attention.",
     "two": "I like a mixture of front-end and back-end work.",
-    "three": "I like to work with user authentication and portals."
+    "three": "I like to work with authentication and user accounts."
   };
 
   var question5 = {
     "id": "question5",
     "title": "Question 5: Personal Taste",
     "one": "I want more ways to manipulate the DOM.",
-    "two": "I am interested in learning a language for game development.",
-    "three": "I like things to just work behind the scenes, giving me tools to simplify the task at hand."
+    "two": "I am interested in learning a language that pairs well with the Unity framework.",
+    "three": "I like things to work behind the scenes. Give me abstracted tools to simplify the task at hand."
   };
 
   var objectsArray = [
