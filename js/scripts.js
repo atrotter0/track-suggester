@@ -74,8 +74,8 @@ function createSurveyObjects() {
   var question3 = {
     "id": "question3",
     "title": "Question 3: Syntax",
-    "one": "Semi-colons are where it's at.",
-    "two": "I want to declare data types ahead of time when creating my functions.",
+    "one": "Semicolons are where it's at.",
+    "two": "I want to declare return types ahead of time when creating my functions.",
     "three": "I can't stand punctuation. I enjoy elegant, readable code."
   };
 
@@ -84,15 +84,15 @@ function createSurveyObjects() {
     "title": "Question 4: Work",
     "one": "I like sleek designs and interesting features that grab my attention.",
     "two": "I like a mixture of front-end and back-end work.",
-    "three": "I like to work with user authentication and portals."
+    "three": "I like to work with authentication and user accounts."
   };
 
   var question5 = {
     "id": "question5",
     "title": "Question 5: Personal Taste",
     "one": "I want more ways to manipulate the DOM.",
-    "two": "I am interested in learning a language for game development.",
-    "three": "I like things to just work behind the scenes, giving me tools to simplify the task at hand."
+    "two": "I am interested in learning a language that pairs well with the Unity framework.",
+    "three": "I like things to work behind the scenes. Give me abstracted tools to simplify the task at hand."
   };
 
   var objectsArray = [
@@ -114,9 +114,9 @@ function buildLocalStorage(array) {
 }
 
 function showSurvey() {
-  $("#survey").show();
-  $("#nextBtn").show();
-  $(".progress-box").show();
+  $("#survey").fadeToggle(500);
+  $("#nextBtn").fadeToggle(900);
+  $(".progress-box").fadeToggle(700);
 }
 
 function incrementCounter() {
@@ -134,7 +134,7 @@ function incrementScore() {
 
 function addProgress() {
   var counter = getCounter();
-  var percent = ((counter.currentQuestion - 1) / counter.questionLimit) * 100;
+  var percent = (counter.currentQuestion / counter.questionLimit) * 100;
   displayPercent(percent);
 
   if (onLastQuestion(counter)) displayPercent(100);
@@ -165,7 +165,7 @@ function checkQuestion() {
 function buttonSwap() {
   $("#nextBtn").hide();
   disable("#nextBtn");
-  $("#viewResults").show();
+  $("#viewResults").fadeToggle(800);
 }
 
 function clearRadioChecked() {
@@ -192,15 +192,12 @@ function enable(element) {
 }
 
 function unlockBtn(btnId) {
-  if (countRadioBoxes() === 1) enable(btnId);
+  if (radioBoxChecked()) enable(btnId);
 }
 
-function countRadioBoxes() {
-  var count = 0;
-  $("input:radio").each(function(index, item) {
-    if ($(item).is(':checked')) count++;
-  });
-  return count;
+function radioBoxChecked() {
+  var count = $("input[type=radio]:checked").length;
+  if (count > 0) return true;
 }
 
 function displayResults() {
@@ -221,7 +218,7 @@ function displayResults() {
 function hideElements() {
   $("form, .progress-box, .jumbotron").hide();
   $(".results").children("div").hide();
-  $(".results").show();
+  $(".results").fadeToggle(800);
 }
 
 $(document).ready(function() {
@@ -232,6 +229,7 @@ $(document).ready(function() {
     $(".jumbotron").hide();
     showSurvey();
     loadData();
+    addProgress(20);
   });
 
   $("label, input[type=radio]").click(function() {
